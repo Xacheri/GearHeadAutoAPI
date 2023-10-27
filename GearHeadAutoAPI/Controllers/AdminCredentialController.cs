@@ -11,9 +11,9 @@ namespace GearHeadAutoAPI.Controllers
 {
     [Route("[controller]")]
     [ApiController]
-    public class CredentialController : ControllerBase
+    public class AdminCredentialController : ControllerBase
     {
-        private readonly ICredential repository;
+        private readonly IAdminCredential repository;
 
         //context for the database connection
         private readonly GearHeadAutoContext context;
@@ -21,18 +21,18 @@ namespace GearHeadAutoAPI.Controllers
         //variable for holding the configuration data for login authentication
         private IConfiguration config;
 
-        public CredentialController(IConfiguration Config)
+        public AdminCredentialController(IConfiguration Config)
         {
             config = Config;
             context = new GearHeadAutoContext();
-            repository = new CredentialDAL(context, config);
+            repository = new AdminCredentialDAL(context, config);
         }
 
-        [HttpPost("LoginUser", Name = "LoginUser")]
+        [HttpPost("LoginAdmin", Name = "LoginAdmin")]
         [AllowAnonymous]
-        public async Task<LoginResponseModel> LoginUser(LoginModel tokenData)
+        public async Task<AdminLoginResponseModel> LoginUser(AdminLoginModel tokenData)
         {
-            LoginResponseModel response = new LoginResponseModel();
+            AdminLoginResponseModel response = new AdminLoginResponseModel();
             try
             {
                 if (tokenData != null)
