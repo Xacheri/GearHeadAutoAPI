@@ -69,11 +69,9 @@ public partial class GearHeadAutoContext : DbContext
             entity.HasKey(e => e.Username);
 
             entity.Property(e => e.Username)
-                .HasMaxLength(20)
-                .IsFixedLength();
+                .HasMaxLength(20);
             entity.Property(e => e.Password)
-                .HasMaxLength(20)
-                .IsFixedLength();
+                .HasMaxLength(20);
         });
 
 
